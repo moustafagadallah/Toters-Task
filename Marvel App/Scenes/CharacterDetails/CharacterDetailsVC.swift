@@ -9,12 +9,27 @@ import UIKit
 
 class CharacterDetailsVC: UIViewController {
 
+    // MARK: - Outlets
+    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+   
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+       
+        setUpTableView()
+        
     }
     
-
+// MARK: - Setup
+    
+    func setUpTableView() {
+       
+        tableView.register(UINib.init(nibName: CharacterDetailsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CharacterDetailsTableViewCell.identifier)
+    
+    }
+    
+    
+    
 
 }

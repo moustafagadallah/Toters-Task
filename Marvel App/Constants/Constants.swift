@@ -19,10 +19,9 @@ enum Keys {
 
 enum APIPath {
     
-    static let  x =  "v1/public/characters"
-    
-    
-    
-    
+    static let  GetComics =  "/%@/comics"
+    static let  GetEvents = "/%@/events"
+    static let  GetSeries = "/%@/series"
+    static let  GetStories   = "/%@/stories"
     
 }

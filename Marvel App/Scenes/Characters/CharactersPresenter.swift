@@ -36,6 +36,7 @@ extension CharacterPresenter: CharactersPresenterProtocol {
     func didSelectRow(at indexPath: IndexPath) {
         
         let selectedItem = charactersItems[indexPath.row]
+        print(selectedItem.id?.description ?? "")
         wirframe.navigateToCharacterDetails(id: selectedItem.id?.description ?? "")
         
     }
