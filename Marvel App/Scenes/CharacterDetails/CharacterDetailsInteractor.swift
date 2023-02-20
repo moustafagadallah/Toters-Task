@@ -41,22 +41,6 @@ class CharacterDetailsInteractor {
         
     }
     
-    func getComics(id : String?) {
-        
-        self.getEvents(id: id) { result in
-            switch result {
-                
-            case .success(let response):
-                if response.code == 200 {
-                    
-                    print(response.data?.results)
-                }
-                
-            case .failure(_):
-                break
-                
-            }
-        }
-    }
+
     
 }

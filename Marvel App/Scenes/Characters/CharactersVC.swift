@@ -19,7 +19,7 @@ class CharactersVC: UIViewController {
     
     // MARK: - Variables
    var presenter: CharactersPresenterProtocol
-    var intt = CharacterDetailsInteractor()
+
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ class CharactersVC: UIViewController {
     
         presenter.viewDidLoad()
         setupCollectionView()
-        intt.getComics(id: "1011334")
+    
     }
     
     
