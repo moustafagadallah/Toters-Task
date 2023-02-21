@@ -7,7 +7,9 @@
 
 import Foundation
 
-class CharacterDetailsInteractor {
+class CharacterDetailsInteractor : CharacterDetailsInteractorProtocol {
+    
+    // MARK: - Service Calling
     
     func getComics(id : String?, onComplete: @escaping onComplete<CharacterDetails.ComicsResponse>){
         
@@ -42,5 +44,4 @@ class CharacterDetailsInteractor {
     }
     
 
-    
 }

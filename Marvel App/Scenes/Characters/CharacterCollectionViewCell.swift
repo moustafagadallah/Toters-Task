@@ -41,7 +41,57 @@ class CharacterCollectionViewCell : UICollectionViewCell {
 // MARK: - CharacterCollectionlViewCellViewProtocol
 
 extension CharacterCollectionViewCell :CharacterCollectionlViewCellViewProtocol {
+   
+    func setComic(_ model: CharacterDetails.Result) {
+       
+        nameLabl.text = model.title ?? ""
+        characterImageView.image = nil
+        let finalimagePath = "\(model.thumbnail?.path ?? "")\(".")\(model.thumbnail?.thumbnailExtension ?? "jpg")"
+        
+        if let imageUrl = URL(string: finalimagePath) {
+            
+            characterImageView.af.setImage(withURL: imageUrl)
+        }
+        
+    }
     
+    func setEvent(_ model: CharacterDetails.Event) {
+        
+        nameLabl.text = model.title ?? ""
+        characterImageView.image = nil
+        let finalimagePath = "\(model.thumbnail?.path ?? "")\(".")\(model.thumbnail?.thumbnailExtension ?? "jpg")"
+        
+        if let imageUrl = URL(string: finalimagePath) {
+            
+            characterImageView.af.setImage(withURL: imageUrl)
+        }
+        
+    }
+    
+    func setSeries(_ model: CharacterDetails.SeriesItem) {
+        nameLabl.text = model.title ?? ""
+        characterImageView.image = nil
+        let finalimagePath = "\(model.thumbnail?.path ?? "")\(".")\(model.thumbnail?.thumbnailExtension ?? "jpg")"
+        
+        if let imageUrl = URL(string: finalimagePath) {
+            
+            characterImageView.af.setImage(withURL: imageUrl)
+        }
+        
+    }
+    
+    func setStory(_ model: CharacterDetails.StoryItem) {
+       
+        nameLabl.text = model.title ?? ""
+        characterImageView.image = nil
+        let finalimagePath = "\(model.thumbnail?.path ?? "")\(".")\(model.thumbnail?.thumbnailExtension ?? "jpg")"
+        
+        if let imageUrl = URL(string: finalimagePath) {
+            
+            characterImageView.af.setImage(withURL: imageUrl)
+        }
+        
+    }
     
     func setItem(_ model: Characters.Result) {
         nameLabl.text = model.name ?? ""

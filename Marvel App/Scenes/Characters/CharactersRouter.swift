@@ -9,7 +9,10 @@ import UIKit
 
 
 class CharactersRouter {
+    
+    
     // MARK: - Variables
+    
     let navigationController: UINavigationController
 
     // MARK: - Init
@@ -33,12 +36,14 @@ class CharactersRouter {
 }
 
 
+// MARK: - CharactersCoordinatorProtocol
 
 extension CharactersRouter :CharactersCoordinatorProtocol {
     
     
     func navigateToCharacterDetails(id: String?) {
         
+        CharacterDetailsRouter.init(navigationController: navigationController).start(id: id)
     }
     
    

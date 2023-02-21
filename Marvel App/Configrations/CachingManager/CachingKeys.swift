@@ -11,6 +11,7 @@ import Foundation
 enum CachingKeys {
 
     static let Token = "Token"
+    static let Characters = "Characters"
  
     
 }

@@ -20,6 +20,7 @@ class CharactersVC: UIViewController {
     // MARK: - Variables
    var presenter: CharactersPresenterProtocol
 
+
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
@@ -27,7 +28,7 @@ class CharactersVC: UIViewController {
     
         presenter.viewDidLoad()
         setupCollectionView()
-    
+
     }
     
     
@@ -99,6 +100,7 @@ extension CharactersVC: UICollectionViewDataSource {
         guard  let cell = charactersCollectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.identifier, for: indexPath) as? CharacterCollectionViewCell else {
             fatalError("Cell Not Registered")
         }
+        
         presenter.configure(characterCell: cell, forIndex: indexPath)
         return cell
     

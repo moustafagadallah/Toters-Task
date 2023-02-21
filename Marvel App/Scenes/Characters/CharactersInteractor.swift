@@ -37,7 +37,7 @@ class CharacterInteractor : CharactersInteractorProtocol {
                 if response.code == 200 {
                     
                     self.presenter?.charactersLoadedSuccessfully(response: response)
-                
+                     CachingManager.setCharaters(response)
                 }
                 
             case .failure(_):
@@ -48,12 +48,6 @@ class CharacterInteractor : CharactersInteractorProtocol {
         }
         
     }
-    
-    
-    
-    
-    
-    
     
     
 }

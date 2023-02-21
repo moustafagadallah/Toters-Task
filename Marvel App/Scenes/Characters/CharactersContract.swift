@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import SwiftUI
 
 // MARK: - View
+
 protocol CharactersViewProtocol: AnyObject {
     
     var presenter: CharactersPresenterProtocol {get set}
@@ -51,10 +51,13 @@ protocol CharactersCoordinatorProtocol : AnyObject {
 
 
 // MARK: - CharacterCellViewProtocol
+
 protocol CharacterCollectionlViewCellViewProtocol: AnyObject {
     func setItem(_ model: Characters.Result)
+    func setComic(_ model: CharacterDetails.Result)
+    func setEvent(_ model: CharacterDetails.Event)
+    func setSeries(_ model: CharacterDetails.SeriesItem)
+    func setStory(_ model: CharacterDetails.StoryItem)
+    
  }
-
-
-
 

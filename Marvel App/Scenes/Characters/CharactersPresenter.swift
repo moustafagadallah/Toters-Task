@@ -23,7 +23,7 @@ class CharacterPresenter  {
         self.wirframe = wirframe
         
     }
-   
+    
     
 }
 
@@ -31,7 +31,7 @@ class CharacterPresenter  {
 // MARK: - CharactersPresenterProtocol
 
 extension CharacterPresenter: CharactersPresenterProtocol {
-  
+    
     
     func didSelectRow(at indexPath: IndexPath) {
         
@@ -43,7 +43,12 @@ extension CharacterPresenter: CharactersPresenterProtocol {
     
     func viewDidLoad() {
         
-        interactor.getCharacters()
+        if  (CachingManager.characters() != nil) {
+            self.charactersItems = CachingManager.characters()?.data?.results ?? []
+        } else {
+            interactor.getCharacters()
+        }
+        
         
     }
     
@@ -54,7 +59,7 @@ extension CharacterPresenter: CharactersPresenterProtocol {
     
     func configure(characterCell cell: CharacterCollectionlViewCellViewProtocol, forIndex indexPath: IndexPath) {
         
-        let model = charactersItems[indexPath.row] 
+        let model = charactersItems[indexPath.row]
         cell.setItem(model)
         
     }
@@ -63,14 +68,14 @@ extension CharacterPresenter: CharactersPresenterProtocol {
 
 
 extension CharacterPresenter: CharactersInteractorOutputProtocol {
-  
+    
     func charactersLoadedSuccessfully(response: Characters.CharactersResponse) {
         
         charactersItems = []
-        let resposeArray = response.data?.results
+        let resposeArray =  response.data?.results
         charactersItems += resposeArray ?? []
         view?.reloadData()
-        view?.setCopyRightlabel(copyRightSring: response.attributionText)
-       
+        view?.setCopyRightlabel(copyRightSring: response.attributionText ?? CachingManager.characters()?.attributionText)
+        
     }
 }
