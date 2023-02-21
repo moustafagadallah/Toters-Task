@@ -7,21 +7,32 @@
 
 import UIKit
 
-class CharacterDetailsVC: UIViewController , CharacterDetailsViewProtocol {
+class CharacterDetailsVC: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var idLabel: UILabel!
+    
+    @IBOutlet weak var idLabel: UILabel! {
+        didSet {
+            idLabel.text =  "\("\("ID = ")\((presenter.characterIdentifier))")"
+        }
+    }
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Variabels
+    
     var presenter: CharactersDetailsPresenterProtocol
-   
+    var activityView: UIActivityIndicatorView?
+
+    
     // MARK: - View Life Cycle
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         presenter.viewDidLoad()
-        setUpTableView()
-        title = "Details"
+        title = presenter.characterIdentifier
+        
     }
     
     // MARK: - Init
@@ -40,22 +51,55 @@ class CharacterDetailsVC: UIViewController , CharacterDetailsViewProtocol {
     // MARK: - Setup
     
     func setUpTableView() {
-        reloadData()
+        
         tableView.register(UINib.init(nibName: CharacterDetailsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CharacterDetailsTableViewCell.identifier)
         
     }
     
-    func reloadData() {
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.reloadData()
-    }
-    
+   
 }
 
 // MARK: - UITableViewDelegate
+
 extension CharacterDetailsVC : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if let cell = cell as? CharacterDetailsTableViewCell {
+            cell.collectionView.dataSource = self
+            cell.collectionView.delegate = self
+            cell.collectionView.tag = indexPath.section
+            cell.collectionView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        
+        view.tintColor = UIColor.white
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.black
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch section {
+        case 0:
+            return  "Comics"
+        case 1:
+            return "Stories"
+        case 2:
+            return "Series"
+        case 3:
+            return "Events"
+            
+        default:
+            return ""
+        }
+        
+        
+    }
+    
     
 }
 // MARK: - UITableViewDataSource
@@ -73,51 +117,66 @@ extension CharacterDetailsVC: UITableViewDataSource {
         return 4
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard  let cell = tableView.dequeueReusableCell(withIdentifier: CharacterDetailsTableViewCell.identifier, for: indexPath) as? CharacterDetailsTableViewCell else {
             fatalError("PODTableViewCell Cell Not Registered")
         }
-
-
-        presenter.configureIntenalTableViewCell(characterCell: cell , forIndex: indexPath)
         
         return cell
         
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
         
-        view.tintColor = UIColor.white
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = UIColor.black
-    }
-    
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        switch section {
-        case 0:
-         return  "Comics"
-        case 1:
-            return "Stories"
-        case 2:
-            return "Series"
-        case 3:
-            return "Events"
-
-        default:
-            return ""
-        }
-        
-     
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 200
+        return 150
+    }
+    
+    
+}
+
+
+// MARK: - UICollectionViewDelegate
+
+extension CharacterDetailsVC : UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return presenter.getItemsCount(section: collectionView.tag) ?? 0
     }
     
 }
 
+// MARK: - UICollectionViewDataSource
+
+extension CharacterDetailsVC : UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.identifier, for: indexPath) as? CharacterCollectionViewCell else {
+            fatalError("Cell Not Registered")
+        }
+        
+        presenter.configure(characterCell: cell, forIndex: indexPath, collectionViewTag: collectionView.tag)
+        return cell
+        
+    }
+}
+
+
+// MARK: - CharacterDetailsViewProtocol
+
+extension CharacterDetailsVC: CharacterDetailsViewProtocol {
+    
+    func reloadData() {
+        
+        setUpTableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.reloadData()
+     
+    }
+    
+    
+}

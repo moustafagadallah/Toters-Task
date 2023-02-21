@@ -8,7 +8,7 @@
 import UIKit
 
 
-class CharactersVC: UIViewController {
+class CharactersVC: UIViewController   {
     
     
     // MARK: - Outlets
@@ -28,6 +28,7 @@ class CharactersVC: UIViewController {
     
         presenter.viewDidLoad()
         setupCollectionView()
+    
 
     }
     
@@ -53,7 +54,7 @@ class CharactersVC: UIViewController {
         charactersCollectionView.register(UINib.init(nibName: CharacterCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
         charactersCollectionView.dataSource = self
         charactersCollectionView.delegate = self
-        
+   
     }
     
 }
@@ -69,7 +70,7 @@ extension CharactersVC: CharactersViewProtocol {
     
    
     func reloadData() {
-
+       
         charactersCollectionView.reloadData()
     }
 
@@ -84,11 +85,15 @@ extension CharactersVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.didSelectRow(at: indexPath)
     }
+    
+
 }
 
 // MARK: - Extentions UICollection View DataSource
 
 extension CharactersVC: UICollectionViewDataSource {
+    
+   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return presenter.numberOfItems

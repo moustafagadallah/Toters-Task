@@ -6,21 +6,22 @@
 //
 
 
-import Foundation
+import UIKit
 
 // MARK: - CharacterDetailsViewProtocol
 
 protocol CharactersDetailsPresenterProtocol: AnyObject {
     
     func viewDidLoad()
-    func configureIntenalTableViewCell(characterCell cell: TBCellViewProtocol, forIndex indexPath: IndexPath)
+    func configure(characterCell cell: CharacterCollectionlViewCellViewProtocol, forIndex indexPath: IndexPath, collectionViewTag: Int)
+   func getItemsCount(section: Int) -> Int?
+    var characterIdentifier: String  {get}
+   
 }
-
 
 
 // MARK: - CharacterDetailsInteractorProtocol
 protocol CharacterDetailsInteractorProtocol: AnyObject {
-    
     
    func getComics(id : String?, onComplete: @escaping onComplete<CharacterDetails.ComicsResponse>)
    func getEvents(id : String?, onComplete: @escaping onComplete<CharacterDetails.EventsResponse>)
@@ -29,47 +30,10 @@ protocol CharacterDetailsInteractorProtocol: AnyObject {
     
  }
 
-
-
 // MARK: - CharacterDetailsViewProtocol
 
 protocol CharacterDetailsViewProtocol : AnyObject {
-    
     func reloadData()
 }
 
-
-protocol CharacterCoordinatorProtocol  : AnyObject {
-
-    
-}
-
-protocol TBCellViewProtocol: AnyObject {
-   
-    func setComics(_ models: [CharacterDetails.Result])
-    func setEvents(_ models: [CharacterDetails.Event])
-    func setSeries(_ models: [CharacterDetails.SeriesItem])
-    func setStories(_ models: [CharacterDetails.StoryItem])
-    func  reloadData()
- 
-}
-
-protocol CharacterDetailsViewTabelViewCellPresenterProtocol {
-    
-    func configure(characterCell cell: CharacterCollectionlViewCellViewProtocol, forIndex indexPath: IndexPath )
-    var view : TBCellViewProtocol?  { get set }
-    func getItemsCount(section: Int) -> Int?
-    func setComics(_ models: [CharacterDetails.Result])
-    func setEvents(_ models: [CharacterDetails.Event])
-    func setSeries(_ models: [CharacterDetails.SeriesItem])
-    func setStories(_ models: [CharacterDetails.StoryItem])
-    
-}
-
-protocol CharacterDetailsViewTabelViewCellProtocol : AnyObject {
-   
-    func reloadData()
- 
-
-}
-
+protocol CharacterCoordinatorProtocol  : AnyObject { }

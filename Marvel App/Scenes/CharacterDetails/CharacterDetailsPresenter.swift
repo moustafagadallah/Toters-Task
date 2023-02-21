@@ -5,7 +5,7 @@
 //  Created by Moustafa Gadallah on 28/07/1444 AH.
 //
 
-import Foundation
+import UIKit
 
 class CharacterDetailsPresenter {
     
@@ -13,15 +13,15 @@ class CharacterDetailsPresenter {
     
     private let interactor: CharacterDetailsInteractorProtocol
     let wirframe: CharacterCoordinatorProtocol
-     var comicItems = [CharacterDetails.Result]()
-     var storiesItems = [CharacterDetails.StoryItem]()
-     var seriesItems = [CharacterDetails.SeriesItem]()
-     var eventItems = [CharacterDetails.Event]()
+    var comicItems = [CharacterDetails.Result]()
+    var storiesItems = [CharacterDetails.StoryItem]()
+    var seriesItems = [CharacterDetails.SeriesItem]()
+    var eventItems = [CharacterDetails.Event]()
     private var characterId: String?
     weak var view: CharacterDetailsViewProtocol?
-    var presenter :  CharacterDetailsViewTabelViewCellPresenterProtocol?
     
     // MARK: - Init
+    
     init(interactor: CharacterDetailsInteractorProtocol,
          wirframe: CharacterCoordinatorProtocol, charactedId: String?) {
         self.interactor = interactor
@@ -34,179 +34,221 @@ class CharacterDetailsPresenter {
 // MARK: - CharactersDetailsPresenterProtocol
 
 extension CharacterDetailsPresenter: CharactersDetailsPresenterProtocol {
-    
-    
-    func configureIntenalTableViewCell(characterCell cell: TBCellViewProtocol, forIndex indexPath: IndexPath) {
+   
+    func configure(characterCell cell: CharacterCollectionlViewCellViewProtocol, forIndex indexPath: IndexPath, collectionViewTag: Int) {
         
-        switch indexPath.section {
+        switch collectionViewTag {
         case 0 :
-            cell.setComics(self.comicItems)
+            if comicItems.count > 0 {
+                let model = comicItems[indexPath.item]
+                cell.setComic(model)
+            }
         case 1:
-            cell.setStories(self.storiesItems)
+            if   storiesItems.count > 0 {
+             let model = storiesItems[indexPath.item]
+                cell.setStory(model)
+            }
         case 2 :
-        
-            cell.setSeries(self.seriesItems)
+            if  seriesItems.count > 0 {
+                
+                let model = seriesItems[indexPath.item]
+                cell.setSeries(model)
+            }
         case 3 :
-          
-            cell.setEvents(self.eventItems)
-
+            if eventItems.count > 0 {
+                let model = eventItems[indexPath.item]
+                cell.setEvent(model)
+            }
+            
         default:
             break
             
         }
         
-        
-        
-        
     }
     
-
+    
     func getItemsCount(section: Int) -> Int? {
         
         switch section {
         case 0 :
-           return numberofComics
+            return numberofComics
         case 1:
             return numberofStories
         case 2 :
-           return numberofSeries
+            return numberofSeries
         case 3 :
-           return  numberofEvents
+            return  numberofEvents
         default:
             return 0
             
         }
         
     }
+    
+    func isObjectsCached() -> Bool? {
+        
+        var isobjectsCached :Bool?
+        if  (CachingManager.series() != nil &&  CachingManager.stories() != nil && CachingManager.comics() != nil && CachingManager.events() != nil) {
+            
+            isobjectsCached = true
+        }
+        
+        return isobjectsCached
+        
+    }
+    
+    
     func viewDidLoad() {
         
-        let dispatchGroup = DispatchGroup()
-        
-        dispatchGroup.enter()
-        
-        interactor.getComics(id: self.characterId) { result in
+        if (isObjectsCached() ?? false) && (characterId == CachingManager.cachedCharacterId()) {
             
-            switch result {
+            self.eventItems = CachingManager.events() ?? []
+            self.comicItems = CachingManager.comics() ?? []
+            self.seriesItems = CachingManager.series() ?? []
+            self.storiesItems = CachingManager.stories() ?? []
+            
+            self.view?.reloadData()
+        } else {
+            
+            let dispatchGroup = DispatchGroup()
+            
+            dispatchGroup.enter()
+            
+            
+            interactor.getComics(id: self.characterId) { result in
                 
-            case .success(let response):
-                if response.code == 200 {
+                switch result {
                     
-                    let resposeArray = response.data?.results
-                    self.comicItems += resposeArray ?? []
-                
-
-                }
-                
-            case .failure(_):
-                break
-                
-            }
-            
-            dispatchGroup.leave()
-        }
-        
-        dispatchGroup.enter()
-        
-        interactor.getStories(id: self.characterId) { result in
-            
-            switch result {
-                
-            case .success(let response):
-                if response.code == 200 {
+                case .success(let response):
+                    if response.code == 200 {
+                        
+                        let resposeArray = response.data?.results
+                        self.comicItems += resposeArray ?? []
+         
+                        
+                    }
                     
-                    let resposeArray = response.data?.results
-                    self.storiesItems += resposeArray ?? []
-                   
+                case .failure(_):
+                    break
                     
                 }
                 
-            case .failure(_):
-                break
-                
+                dispatchGroup.leave()
             }
             
-            dispatchGroup.leave()
-        }
-        
-        
-        
-        dispatchGroup.enter()
-        
-        interactor.getSeries(id: self.characterId) { result in
-
-            switch result {
+            dispatchGroup.enter()
+            
+            interactor.getStories(id: self.characterId) { result in
                 
-            case .success(let response):
-                if response.code == 200 {
+                switch result {
                     
-                    let resposeArray = response.data?.results
-                    self.seriesItems += resposeArray ?? []
+                case .success(let response):
+                    if response.code == 200 {
+                        
+                        let resposeArray = response.data?.results
+                        self.storiesItems += resposeArray ?? []
+                        
+                        
+                    }
+                    
+                case .failure(_):
+                    break
+                    
                 }
                 
-            case .failure(_):
-                break
-                
+                dispatchGroup.leave()
             }
             
-            dispatchGroup.leave()
             
-        }
-        
-        dispatchGroup.enter()
-        interactor.getEvents(id: self.characterId) { result in
+            dispatchGroup.enter()
             
-            switch result {
+            interactor.getSeries(id: self.characterId) { result in
                 
-            case .success(let response):
-                if response.code == 200 {
+                switch result {
                     
-                    let resposeArray = response.data?.results
-                    self.eventItems += resposeArray ?? []
-                   
-
+                case .success(let response):
+                    if response.code == 200 {
+                        let resposeArray = response.data?.results
+                        self.seriesItems += resposeArray ?? []
+                    
+                        
+                        
+                    }
+                    
+                case .failure(_):
+                    break
+                    
                 }
                 
-            case .failure(_):
-                break
+                dispatchGroup.leave()
                 
             }
             
-            dispatchGroup.leave()
-        }
-        
-        dispatchGroup.notify(queue: .main) {
+            dispatchGroup.enter()
+            interactor.getEvents(id: self.characterId) { result in
+                
+                switch result {
+                    
+                case .success(let response):
+                    if response.code == 200 {
+                        
+                        let resposeArray = response.data?.results
+                        self.eventItems += resposeArray ?? []
+                       
+                        
+                    }
+                    
+                case .failure(_):
+                    break
+                    
+                }
+                
+                dispatchGroup.leave()
+            }
             
-            self.presenter?.setComics(self.comicItems)
-            self.presenter?.setStories(self.storiesItems)
-            self.presenter?.setSeries(self.seriesItems)
-            self.presenter?.setEvents(self.eventItems)
-       //     self.view?.reloadData()
+            dispatchGroup.notify(queue: .main) {
+                CachingManager.setEvents(self.eventItems)
+                CachingManager.setComics(self.comicItems)
+                CachingManager.setSeries(self.seriesItems)
+                CachingManager.setStories(self.storiesItems)
+                CachingManager.store(value: self.characterId, forKey: CachingKeys.CachedCharacterId)
+                self.view?.reloadData()
+            }
+            
+            
+            
         }
         
-
+    
+        
     }
-
+    
+    var characterIdentifier: String {
+        
+        return self.characterId   ?? ""
+    }
+    
+    
     var numberofComics: Int {
         
-        return comicItems.count
+        return comicItems.count > 3 ?  3 :  comicItems.count
+        
     }
     
     var numberofStories: Int {
         
-        return storiesItems.count
+        return seriesItems.count > 3 ?  3 :  seriesItems.count
         
     }
     
     var numberofSeries: Int {
-        return seriesItems.count
+        return storiesItems.count > 3 ?  3 :  storiesItems.count
     }
     
     var numberofEvents: Int {
         
-        return eventItems.count
+        return eventItems.count > 3 ?  3 :  eventItems.count
     }
-    
-  
-    
     
 }

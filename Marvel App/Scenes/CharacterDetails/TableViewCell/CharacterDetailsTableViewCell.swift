@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CharacterDetailsTableViewCell: UITableViewCell , TBCellViewProtocol  {
-  
-  
+class CharacterDetailsTableViewCell: UITableViewCell   {
+   
+
     // MARK: - Outlets
     
     @IBOutlet weak var sectionTitleLabel: UILabel!
@@ -18,23 +18,14 @@ class CharacterDetailsTableViewCell: UITableViewCell , TBCellViewProtocol  {
     // MARK: - Variables
     
     static let identifier = "\(CharacterDetailsTableViewCell.self)"
-    var presenter :  CharacterDetailsViewTabelViewCellPresenterProtocol?
-   
-
+  
     override func awakeFromNib() {
         super.awakeFromNib()
-        presenter = CharacterDetailsTableViewCellPresenter(view: self)
+
         setCollectionView()
-        
     }
     
-    func reloadData() {
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-   
-   
-    }
+ 
     
     
 
@@ -43,73 +34,13 @@ class CharacterDetailsTableViewCell: UITableViewCell , TBCellViewProtocol  {
     func setCollectionView() {
         
         collectionView.register(UINib.init(nibName: CharacterCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
-            collectionView.dataSource = self
             collectionView.delegate = self
+        
     }
 
 
 }
 
-// MARK: - UICollectionViewDataSource
-
-extension CharacterDetailsTableViewCell: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int  {
-        
-        return 1
-    }
-    
-    
-   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) ->       Int {
-
-       return presenter?.getItemsCount(section:section) ?? 0
-        
-    }
-    
- 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.identifier, for: indexPath) as? CharacterCollectionViewCell else {
-            fatalError("Cell Not Registered")
-        }
-    
-        //presenter?.view = self
-        presenter?.configure(characterCell: cell, forIndex: indexPath)
-   
-        return cell
-        
-     }
-    
-    func setComics(_ models: [CharacterDetails.Result]) {
-        
-        presenter?.setComics(models)
-   
-    }
-    
-
-    func setEvents(_ models: [CharacterDetails.Event]) {
-      
-        presenter?.setEvents(models)
-     
-    
-    }
-    
-    func setSeries(_ models: [CharacterDetails.SeriesItem]) {
-    
-        presenter?.setSeries(models)
-        
-  
-        
-    }
-    
-    func setStories(_ models: [CharacterDetails.StoryItem]) {
-        
-        presenter?.setStories(models)
-   
-
-    }
-
-}
 
 // MARK: - UICollectionViewDelegate
 extension CharacterDetailsTableViewCell: UICollectionViewDelegate { }

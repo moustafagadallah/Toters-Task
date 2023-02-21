@@ -109,9 +109,11 @@ enum CharacterDetails {
         var items: [StoriesItem]?
         var returned: Int?
     }
+    
     struct StoriesItem: Codable {
         var resourceURI: String?
         var name: String?
+        var thumbnail: Thumbnail?
         var type: String?
     }
     

@@ -58,7 +58,7 @@ extension CharacterCollectionViewCell :CharacterCollectionlViewCellViewProtocol 
     func setEvent(_ model: CharacterDetails.Event) {
         
         nameLabl.text = model.title ?? ""
-        characterImageView.image = nil
+       
         let finalimagePath = "\(model.thumbnail?.path ?? "")\(".")\(model.thumbnail?.thumbnailExtension ?? "jpg")"
         
         if let imageUrl = URL(string: finalimagePath) {
@@ -70,7 +70,7 @@ extension CharacterCollectionViewCell :CharacterCollectionlViewCellViewProtocol 
     
     func setSeries(_ model: CharacterDetails.SeriesItem) {
         nameLabl.text = model.title ?? ""
-        characterImageView.image = nil
+      
         let finalimagePath = "\(model.thumbnail?.path ?? "")\(".")\(model.thumbnail?.thumbnailExtension ?? "jpg")"
         
         if let imageUrl = URL(string: finalimagePath) {
@@ -83,7 +83,6 @@ extension CharacterCollectionViewCell :CharacterCollectionlViewCellViewProtocol 
     func setStory(_ model: CharacterDetails.StoryItem) {
        
         nameLabl.text = model.title ?? ""
-        characterImageView.image = nil
         let finalimagePath = "\(model.thumbnail?.path ?? "")\(".")\(model.thumbnail?.thumbnailExtension ?? "jpg")"
         
         if let imageUrl = URL(string: finalimagePath) {
@@ -95,7 +94,7 @@ extension CharacterCollectionViewCell :CharacterCollectionlViewCellViewProtocol 
     
     func setItem(_ model: Characters.Result) {
         nameLabl.text = model.name ?? ""
-        characterImageView.image = nil
+     
         let finalimagePath = "\(model.thumbnail?.path ?? "")\(".")\(model.thumbnail?.thumbnailExtension ?? "jpg")"
         
         if let imageUrl = URL(string: finalimagePath) {

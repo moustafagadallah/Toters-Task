@@ -26,7 +26,6 @@
 		707F86B029A0D483006729F2 /* CharacterDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F86AF29A0D483006729F2 /* CharacterDetailsRouter.swift */; };
 		707F86B229A0E45B006729F2 /* CharacterDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 707F86B129A0E45B006729F2 /* CharacterDetailsTableViewCell.xib */; };
 		7090D9D429A21AFD0026DA5F /* CharacterDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7090D9D329A21AFD0026DA5F /* CharacterDetailsPresenter.swift */; };
-		70943C1F29A37C1C00863B26 /* CharacterDetailsTableViewCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70943C1E29A37C1C00863B26 /* CharacterDetailsTableViewCellPresenter.swift */; };
 		70CF48AF299FF243004CC19B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 70CF48AE299FF243004CC19B /* Alamofire */; };
 		70CF48B2299FF2D0004CC19B /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF48B1299FF2D0004CC19B /* EndPoint.swift */; };
 		70CF48B4299FF323004CC19B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF48B3299FF323004CC19B /* Environment.swift */; };
@@ -55,6 +54,11 @@
 		70CF48E829A0309B004CC19B /* BaseComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF48E729A0309B004CC19B /* BaseComponents.swift */; };
 		70CF48EB29A0378F004CC19B /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 70CF48EA29A0378F004CC19B /* AlamofireImage */; };
 		70CF48ED29A03A18004CC19B /* CharactersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF48EC29A03A18004CC19B /* CharactersRouter.swift */; };
+		70CF769129A5711200E869B5 /* ShimmerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF768C29A5711200E869B5 /* ShimmerOptions.swift */; };
+		70CF769229A5711200E869B5 /* UICollectionView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF768D29A5711200E869B5 /* UICollectionView+Shimmer.swift */; };
+		70CF769329A5711200E869B5 /* ShimmerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF768E29A5711200E869B5 /* ShimmerAnimation.swift */; };
+		70CF769429A5711200E869B5 /* UIView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF768F29A5711200E869B5 /* UIView+Shimmer.swift */; };
+		70CF769529A5711200E869B5 /* UITableView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF769029A5711200E869B5 /* UITableView+Shimmer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +102,6 @@
 		707F86AF29A0D483006729F2 /* CharacterDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsRouter.swift; sourceTree = "<group>"; };
 		707F86B129A0E45B006729F2 /* CharacterDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		7090D9D329A21AFD0026DA5F /* CharacterDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsPresenter.swift; sourceTree = "<group>"; };
-		70943C1E29A37C1C00863B26 /* CharacterDetailsTableViewCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsTableViewCellPresenter.swift; sourceTree = "<group>"; };
 		70CF48B1299FF2D0004CC19B /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		70CF48B3299FF323004CC19B /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		70CF48B6299FF343004CC19B /* AppUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUrls.swift; sourceTree = "<group>"; };
@@ -125,6 +128,11 @@
 		70CF48E529A02912004CC19B /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		70CF48E729A0309B004CC19B /* BaseComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseComponents.swift; sourceTree = "<group>"; };
 		70CF48EC29A03A18004CC19B /* CharactersRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersRouter.swift; sourceTree = "<group>"; };
+		70CF768C29A5711200E869B5 /* ShimmerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerOptions.swift; sourceTree = "<group>"; };
+		70CF768D29A5711200E869B5 /* UICollectionView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Shimmer.swift"; sourceTree = "<group>"; };
+		70CF768E29A5711200E869B5 /* ShimmerAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerAnimation.swift; sourceTree = "<group>"; };
+		70CF768F29A5711200E869B5 /* UIView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmer.swift"; sourceTree = "<group>"; };
+		70CF769029A5711200E869B5 /* UITableView+Shimmer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Shimmer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,16 +221,14 @@
 		707F86A429A0D33D006729F2 /* CharacterDetails */ = {
 			isa = PBXGroup;
 			children = (
+				70CF769629A579D300E869B5 /* TableViewCell */,
 				707F86A529A0D3F9006729F2 /* CharacterDetailsVC.xib */,
 				707F86A729A0D41A006729F2 /* CharacterDetailsVC.swift */,
 				707F86A929A0D438006729F2 /* CharacterDetailsEntity.swift */,
 				707F86AB29A0D450006729F2 /* CharacterDetailsContract.swift */,
-				704A999029A0EB7F00793E4F /* CharacterDetailsTableViewCell.swift */,
 				707F86AD29A0D461006729F2 /* CharacterDetailsInteractor.swift */,
 				7090D9D329A21AFD0026DA5F /* CharacterDetailsPresenter.swift */,
-				70943C1E29A37C1C00863B26 /* CharacterDetailsTableViewCellPresenter.swift */,
 				707F86AF29A0D483006729F2 /* CharacterDetailsRouter.swift */,
-				707F86B129A0E45B006729F2 /* CharacterDetailsTableViewCell.xib */,
 			);
 			path = CharacterDetails;
 			sourceTree = "<group>";
@@ -252,6 +258,7 @@
 		70CF48BE299FF582004CC19B /* Configrations */ = {
 			isa = PBXGroup;
 			children = (
+				70CF768B29A5711200E869B5 /* ShimmerView */,
 				70CF48C829A00227004CC19B /* CachingManager */,
 				70CF48B6299FF343004CC19B /* AppUrls.swift */,
 				70CF48E729A0309B004CC19B /* BaseComponents.swift */,
@@ -293,6 +300,7 @@
 		70CF48D629A01D16004CC19B /* Characters */ = {
 			isa = PBXGroup;
 			children = (
+				70CF769729A579F700E869B5 /* CollectionViewCell */,
 				70CF48D729A01DD6004CC19B /* CharactersVC.xib */,
 				70CF48DB29A01E04004CC19B /* CharactersVC.swift */,
 				70CF48E129A01E60004CC19B /* CharactersEntity.swift */,
@@ -300,10 +308,38 @@
 				70CF48DD29A01E26004CC19B /* CharactersPresenter.swift */,
 				70CF48EC29A03A18004CC19B /* CharactersRouter.swift */,
 				70CF48DF29A01E37004CC19B /* CharactersInteractor.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		70CF768B29A5711200E869B5 /* ShimmerView */ = {
+			isa = PBXGroup;
+			children = (
+				70CF768C29A5711200E869B5 /* ShimmerOptions.swift */,
+				70CF768D29A5711200E869B5 /* UICollectionView+Shimmer.swift */,
+				70CF768E29A5711200E869B5 /* ShimmerAnimation.swift */,
+				70CF768F29A5711200E869B5 /* UIView+Shimmer.swift */,
+				70CF769029A5711200E869B5 /* UITableView+Shimmer.swift */,
+			);
+			path = ShimmerView;
+			sourceTree = "<group>";
+		};
+		70CF769629A579D300E869B5 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				704A999029A0EB7F00793E4F /* CharacterDetailsTableViewCell.swift */,
+				707F86B129A0E45B006729F2 /* CharacterDetailsTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		70CF769729A579F700E869B5 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
 				70CF48E329A02837004CC19B /* CharacterCollectionViewCell.xib */,
 				70CF48E529A02912004CC19B /* CharacterCollectionViewCell.swift */,
 			);
-			path = Characters;
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,22 +490,26 @@
 				70CF48CA29A0023F004CC19B /* CachingManager.swift in Sources */,
 				70CF48C0299FF748004CC19B /* Interceptors.swift in Sources */,
 				70CF48B9299FF3F2004CC19B /* NetworkManger + DefaultData.swift in Sources */,
-				70943C1F29A37C1C00863B26 /* CharacterDetailsTableViewCellPresenter.swift in Sources */,
 				70CF48E629A02912004CC19B /* CharacterCollectionViewCell.swift in Sources */,
 				7013B852299FEBF300ADFBE7 /* ViewController.swift in Sources */,
 				707F86A829A0D41A006729F2 /* CharacterDetailsVC.swift in Sources */,
 				70CF48DC29A01E04004CC19B /* CharactersVC.swift in Sources */,
 				70CF48CE29A002EA004CC19B /* String + MD5.swift in Sources */,
 				70CF48E029A01E37004CC19B /* CharactersInteractor.swift in Sources */,
+				70CF769429A5711200E869B5 /* UIView+Shimmer.swift in Sources */,
 				707F86AA29A0D438006729F2 /* CharacterDetailsEntity.swift in Sources */,
+				70CF769529A5711200E869B5 /* UITableView+Shimmer.swift in Sources */,
 				7090D9D429A21AFD0026DA5F /* CharacterDetailsPresenter.swift in Sources */,
 				707F86A329A05348006729F2 /* UIView + Borders.swift in Sources */,
 				70CF48ED29A03A18004CC19B /* CharactersRouter.swift in Sources */,
 				704A999129A0EB7F00793E4F /* CharacterDetailsTableViewCell.swift in Sources */,
+				70CF769329A5711200E869B5 /* ShimmerAnimation.swift in Sources */,
 				70CF48C729A0016F004CC19B /* Decodable + Parsing.swift in Sources */,
+				70CF769229A5711200E869B5 /* UICollectionView+Shimmer.swift in Sources */,
 				7013B84E299FEBF300ADFBE7 /* AppDelegate.swift in Sources */,
 				70CF48C529A00105004CC19B /* String + Localization.swift in Sources */,
 				70CF48B2299FF2D0004CC19B /* EndPoint.swift in Sources */,
+				70CF769129A5711200E869B5 /* ShimmerOptions.swift in Sources */,
 				707F86AE29A0D461006729F2 /* CharacterDetailsInteractor.swift in Sources */,
 				70CF48BB299FF443004CC19B /* NetworkManager.swift in Sources */,
 				70CF48E229A01E60004CC19B /* CharactersEntity.swift in Sources */,
